@@ -75,12 +75,6 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new JoystickButton(m_driverController, Button.kB.value)
         .whileTrue(new RunCommand(() -> m_robotDrive.setX(), m_robotDrive));
-
-    new JoystickButton(m_driverController, Button.kA.value)
-        .whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading(), m_robotDrive));
-
-    new JoystickButton(m_driverController, Button.kY.value)
-        .whileTrue(new RunCommand(() -> m_robotDrive.zeroPosition(), m_robotDrive));
   }
 
   /**

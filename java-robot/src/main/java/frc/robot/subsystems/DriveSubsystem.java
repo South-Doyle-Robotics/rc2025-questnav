@@ -70,7 +70,6 @@ public class DriveSubsystem extends SubsystemBase {
   // Create a new DriveSubsystem
   public DriveSubsystem() {
     anglePIDController.enableContinuousInput(-180, 180);
-    questNav.zeroHeading();
   }
 
   // Update odometry in the periodic block
@@ -96,7 +95,6 @@ public class DriveSubsystem extends SubsystemBase {
 
   // Reset the odometry to the specified pose
   public void resetOdometry(Pose2d pose) {
-    questNav.zeroPosition();
     m_frontLeft.resetEncoders();
     m_frontRight.resetEncoders();
     m_rearLeft.resetEncoders();
@@ -108,8 +106,10 @@ public class DriveSubsystem extends SubsystemBase {
             m_frontRight.getPosition(),
             m_rearLeft.getPosition(),
             m_rearRight.getPosition()
-        },
-        pose);
+          },
+          pose
+    );
+    questNav.resetPose(pose);
   }
 
   /**
@@ -246,15 +246,7 @@ public class DriveSubsystem extends SubsystemBase {
     return questNav.getPose().getRotation().getDegrees() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
 
-  public void zeroPosition() {
-    questNav.zeroPosition();
-  }
-
   public void cleanupQuestNavMessages() {
     questNav.cleanUpQuestNavMessages();
-  }
-
-  public void zeroHeading() {
-    questNav.zeroHeading();
   }
 }
