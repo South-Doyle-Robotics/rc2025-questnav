@@ -109,7 +109,7 @@ public class DriveSubsystem extends SubsystemBase {
           },
           pose
     );
-    questNav.resetPose(pose);
+    questNav.setPose(pose);
   }
 
   /**
