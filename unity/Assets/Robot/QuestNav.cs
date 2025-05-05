@@ -752,6 +752,9 @@ namespace Robot
             eulerAngles = cameraRig.centerEyeAnchor.eulerAngles;
             batteryPercent = SystemInfo.batteryLevel * 100;
 
+            position -= cameraRig.centerEyeAnchor.forward * (8.25f * 0.0254f - 0.1f);
+            position += cameraRig.centerEyeAnchor.right * (4.5f * 0.0254f);
+
             frcDataSink.PublishValue("/questnav/frameCount", frameIndex);
             frcDataSink.PublishValue("/questnav/timestamp", timeStamp);
             frcDataSink.PublishValue("/questnav/position", position.ToArray());
